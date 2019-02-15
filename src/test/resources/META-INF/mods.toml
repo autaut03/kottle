@@ -1,0 +1,21 @@
+modLoader="kotlinfml"
+loaderVersion="[2,)"
+
+[[mods]]
+    modId="kottle_test"
+    version="${file.jarVersion}"
+    displayName="Kottle Test"
+
+[[dependencies.kottle_test]]
+    modId="forge"
+    mandatory=true
+    versionRange="[25,)"
+    ordering="NONE"
+    side="BOTH"
+
+[[dependencies.kottle_test]]
+    modId="minecraft"
+    mandatory=true
+    versionRange="[1.13.2,)"
+    ordering="NONE"
+    side="BOTH"

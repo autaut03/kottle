@@ -1,0 +1,114 @@
+buildscript {
+    repositories {
+        jcenter()
+        mavenCentral()
+        maven { url 'https://files.minecraftforge.net/maven' }
+    }
+    dependencies {
+        classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '3.+', changing: true
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
+    }
+}
+
+plugins {
+    id 'com.github.johnrengelman.shadow' version '4.0.4'
+}
+
+apply plugin: 'net.minecraftforge.gradle'
+apply plugin: 'kotlin'
+apply plugin: 'eclipse'
+
+group = 'net.alexwells.kottle'
+archivesBaseName = 'Kottle'
+
+sourceCompatibility = targetCompatibility = compileJava.sourceCompatibility = compileJava.targetCompatibility = '1.8' // Need this here so eclipse task generates correctly.
+compileKotlin.kotlinOptions.jvmTarget = compileTestKotlin.kotlinOptions.jvmTarget = '1.8'
+
+minecraft {
+    mappings channel: mappingsChannel, version: mappingsVersion
+
+    runs {
+        client = {
+            // recommended logging data for a userdev environment
+            properties 'forge.logging.markers': 'CORE,SCAN,REGISTRIES,REGISTRYDUMP'
+            // recommended logging level for the console
+            properties 'forge.logging.console.level': 'debug'
+            // enable console colors
+            properties 'forge.logging.noansi': 'false'
+            workingDirectory project.file('run').canonicalPath
+            source sourceSets.main
+        }
+
+        // todo https://github.com/MinecraftForge/ForgeGradle/pull/546
+        /*testClient = {
+            workingDirectory project.file('run').canonicalPath
+
+            source sourceSets.main
+            source sourceSets.test
+
+            merge 'client'
+        }*/
+
+        server = {
+            // recommended logging data for a userdev environment
+            properties 'forge.logging.markers': 'CORE,SCAN,REGISTRIES,REGISTRYDUMP'
+            // recommended logging level for the console
+            properties 'forge.logging.console.level': 'debug'
+            // enable console colors
+            properties 'forge.logging.noansi': 'false'
+            workingDirectory project.file('run').canonicalPath
+            source sourceSets.main
+        }
+    }
+}
+
+jar {
+    manifest {
+        attributes([
+                'FMLModType': 'LANGPROVIDER'
+        ])
+        
+        attributes([
+                'Specification-Title': 'Mod Language Provider',
+                'Specification-Vendor': 'Forge Development LLC',
+                'Specification-Version': '1',
+                'Implementation-Title': archivesBaseName,
+                'Implementation-Version': version,
+                'Implementation-Vendor': 'kottle',
+                'Implementation-Timestamp': new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
+        ], 'net/alexwells/kottle/')
+    }
+}
+
+repositories {
+    jcenter()
+}
+
+dependencies {
+    minecraft forgeVersion
+
+    compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
+    compile "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlinVersion"
+    compile "org.jetbrains.kotlin:kotlin-reflect:$kotlinVersion"
+    compile "org.jetbrains:annotations:$annotationsVersion"
+    compile "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion"
+    compile "org.jetbrains.kotlinx:kotlinx-coroutines-jdk8:$coroutinesVersion"
+}
+
+shadowJar {
+    classifier = ""
+
+    dependencies {
+        include(dependency("org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"))
+        include(dependency("org.jetbrains.kotlin:kotlin-reflect:$kotlinVersion"))
+        include(dependency("org.jetbrains:annotations:$annotationsVersion"))
+        include(dependency("org.jetbrains.kotlinx:kotlinx-coroutines-core:${coroutinesVersion}"))
+        include(dependency("org.jetbrains.kotlinx:kotlinx-coroutines-jdk8:${coroutinesVersion}"))
+    }
+}
+
+tasks.build.dependsOn shadowJar
+
+artifacts {
+    archives shadowJar
+}
