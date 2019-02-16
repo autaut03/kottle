@@ -1,6 +1,7 @@
 package net.alexwells.kottle
 
 import net.minecraftforge.eventbus.EventBusErrorMessage
+import net.minecraftforge.eventbus.api.BusBuilder
 import net.minecraftforge.eventbus.api.Event
 import net.minecraftforge.eventbus.api.IEventBus
 import net.minecraftforge.eventbus.api.IEventListener
@@ -47,7 +48,7 @@ class FMLKotlinModContainer(
         triggerMap[ModLoadingStage.ENQUEUE_IMC] = dummy().andThen(::beforeEvent).andThen(::fireEvent).andThen(::afterEvent)
         triggerMap[ModLoadingStage.PROCESS_IMC] = dummy().andThen(::beforeEvent).andThen(::fireEvent).andThen(::afterEvent)
         triggerMap[ModLoadingStage.COMPLETE] = dummy().andThen(::beforeEvent).andThen(::fireEvent).andThen(::afterEvent)
-        eventBus = IEventBus.create(::onEventFailed)
+        eventBus = BusBuilder.builder().setExceptionHandler(::onEventFailed).setTrackPhases(false).build()
         configHandler = Optional.of(Consumer { event -> eventBus.post(event) })
 
         val contextExtension = FMLKotlinModLoadingContext.Context(this)
