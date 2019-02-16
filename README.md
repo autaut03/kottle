@@ -42,4 +42,5 @@ loaderVersion="[1,)"
 ```
 
 Finally, replace `FMLJavaModLoadingContext` references in your code with `FMLKotlinModLoadingContext`. For more info, check
-out test sources [here](https://github.com/autaut03/kottle/tree/master/src/test/kotlin/net/alexwells/kottle).
+out test sources [here](https://github.com/autaut03/kottle/tree/master/src/test/kotlin/net/alexwells/kottle) or my mod,
+Roomery, [here](https://github.com/autaut03/roomery).
