@@ -6,17 +6,36 @@ Kotlin language provider for Forge 1.13.2+. Originally a rewrite of [Shadowfacts
 `object` instances for `@Mod.EventBusSubscriber`
 
 ## Usage
-Set up your default Kotlin dev environment (IDEA can help you with that), then in your `build.gradle`:
+In your `build.gradle`:
 ```groovy
+buildscript {
+    repositories {
+        jcenter()
+    }
+    
+    dependencies {
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
+    }
+}
+
 repositories {
-	jcenter()
+	maven { url 'https://minecraft.curseforge.com/api/maven/' }
 }
 
 dependencies {
-	compile 'net.alexwells:kottle:1.0.0'
+	compile "kottle:Kottle:$kottleVersion"
 }
 ```
-Then in your `mods.toml`:
+, in your `gradle.properties`:
+```
+# This is your kotlin gradle plugin version. Doesn't matter that much, but
+# preferably keep it even with one used in Kottle's gradle.properties (found on github)
+kotlinVersion = 1.3.21
+
+# And that's the version of Kottle itself. 
+kottleVersion = 1.0.0
+```
+, in your `mods.toml`:
 ```toml
 modLoader="kotlinfml"
 loaderVersion="[1,)"
