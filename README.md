@@ -33,7 +33,9 @@ dependencies {
 kotlinVersion = 1.3.21
 
 # And that's the version of Kottle itself. 
-kottleVersion = 1.0.0
+# For Forge builds prior and including to 25.0.14, use 1.0.0.
+# For anything newer, use 1.0.1
+kottleVersion = 1.0.1
 ```
 , in your `mods.toml`:
 ```toml
