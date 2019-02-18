@@ -18,6 +18,8 @@ buildscript {
     }
 }
 
+apply plugin: 'kotlin'
+
 repositories {
 	maven { url 'https://minecraft.curseforge.com/api/maven/' }
 }
