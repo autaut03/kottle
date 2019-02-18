@@ -28,9 +28,8 @@ dependencies {
 ```
 , in your `gradle.properties`:
 ```
-# This is your kotlin gradle plugin version. Doesn't matter that much, but
-# preferably keep it even with one used in Kottle's gradle.properties (found on github)
-kotlinVersion = 1.3.21
+# This is your kotlin gradle plugin version. For now, use 1.3.11.
+kotlinVersion = 1.3.11
 
 # And that's the version of Kottle itself. 
 # For Forge builds prior and including to 25.0.14, use 1.0.0.
