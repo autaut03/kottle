@@ -1,6 +1,5 @@
 package net.alexwells.kottle
 
-import net.minecraftforge.event.entity.EntityJoinWorldEvent
 import net.minecraftforge.eventbus.api.SubscribeEvent
 import net.minecraftforge.fml.common.Mod
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent
@@ -21,11 +20,11 @@ object KottleTest {
 	}
 
 	// You can also use EventBusSubscriber as usual
-	@Mod.EventBusSubscriber
+	@KotlinEventBusSubscriber(bus = KotlinEventBusSubscriber.Bus.MOD)
 	object EventSubscriber {
 		@SubscribeEvent
-		fun testNonStatic(event: EntityJoinWorldEvent) {
-			logger.info("HELLO from testNonStatic")
+		fun setupNonStatic(event: FMLCommonSetupEvent) {
+			logger.info("HELLO from setupNonStatic")
 		}
 	}
 

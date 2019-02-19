@@ -16,7 +16,7 @@ import java.util.stream.Collectors
  * Similar to AutomaticEventSubscriber, but with support for kotlin objects.
  */
 object KotlinAutomaticEventSubscriber {
-    private val AUTO_SUBSCRIBER = Type.getType(Mod.EventBusSubscriber::class.java)
+    private val AUTO_SUBSCRIBER = Type.getType(KotlinEventBusSubscriber::class.java)
 
     private val logger = LogManager.getLogger()
 
@@ -33,7 +33,7 @@ object KotlinAutomaticEventSubscriber {
 
         targets.forEach { ad ->
             val busTargetHolder = ad.annotationData.getOrDefault("bus", ModAnnotation.EnumHolder(null, "FORGE")) as ModAnnotation.EnumHolder
-            val busTarget = Mod.EventBusSubscriber.Bus.valueOf(busTargetHolder.value)
+            val busTarget = KotlinEventBusSubscriber.Bus.valueOf(busTargetHolder.value)
 
             try {
                 logger.debug(Logging.LOADING, "Auto-subscribing {} to {}", ad.classType.className, busTarget)

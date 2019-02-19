@@ -47,6 +47,7 @@ loaderVersion="[1,)"
 Then download Kottle from [here](https://minecraft.curseforge.com/projects/kottle/files) and drop it into your `run/mods`
 folder of MDK. Create the folder if it doesn't exist.
 
-Finally, replace `FMLJavaModLoadingContext` references in your code with `FMLKotlinModLoadingContext`. For more info, check
-out test sources [here](https://github.com/autaut03/kottle/tree/master/src/test/kotlin/net/alexwells/kottle) or my mod,
+Finally, replace `FMLJavaModLoadingContext` references in your code with `FMLKotlinModLoadingContext` and
+`Mod.EventBusSubcriber` with `KotlinEventBusSubcriber`. For more info, checkout test sources 
+[here](https://github.com/autaut03/kottle/tree/master/src/test/kotlin/net/alexwells/kottle) or my mod,
 Roomery, [here](https://github.com/autaut03/roomery).
