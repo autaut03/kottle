@@ -6,7 +6,9 @@ Kotlin language provider for Forge 1.13.2+. Originally a rewrite of [Shadowfacts
 `object` instances for `@Mod.EventBusSubscriber`
 
 ## Usage
-In your `build.gradle`:
+First of all, make sure you're on Forge 25.0.15 or higher.
+
+Then, in your `build.gradle`:
 ```groovy
 buildscript {
     repositories {
@@ -33,10 +35,8 @@ dependencies {
 # This is your kotlin gradle plugin version. For now, use 1.3.11.
 kotlinVersion = 1.3.11
 
-# And that's the version of Kottle itself. 
-# For Forge builds prior and including to 25.0.14, use 1.0.0.
-# For anything newer, use 1.0.2
-kottleVersion = 1.0.2
+# For now, use 1.0.3. 
+kottleVersion = 1.0.3
 ```
 , in your `mods.toml`:
 ```toml
