@@ -28,36 +28,52 @@ minecraft {
     mappings channel: mappingsChannel, version: mappingsVersion
 
     runs {
-        client = {
+        client {
+            workingDirectory project.file('run')
+
             // recommended logging data for a userdev environment
             properties 'forge.logging.markers': 'CORE,SCAN,REGISTRIES,REGISTRYDUMP'
+
             // recommended logging level for the console
             properties 'forge.logging.console.level': 'debug'
+
             // enable console colors
             properties 'forge.logging.noansi': 'false'
-            workingDirectory project.file('run').canonicalPath
-            source sourceSets.main
+
+            mods {
+                Kottle {
+                    source sourceSets.main
+                }
+            }
         }
 
-        // todo https://github.com/MinecraftForge/ForgeGradle/pull/546
-        /*testClient = {
-            workingDirectory project.file('run').canonicalPath
+        testClient {
+            parent runs.client
 
-            source sourceSets.main
-            source sourceSets.test
+            mods {
+                KottleTest {
+                    source sourceSets.test
+                }
+            }
+        }
 
-            merge 'client'
-        }*/
+        server {
+            workingDirectory project.file('run')
 
-        server = {
             // recommended logging data for a userdev environment
             properties 'forge.logging.markers': 'CORE,SCAN,REGISTRIES,REGISTRYDUMP'
+
             // recommended logging level for the console
             properties 'forge.logging.console.level': 'debug'
+
             // enable console colors
             properties 'forge.logging.noansi': 'false'
-            workingDirectory project.file('run').canonicalPath
-            source sourceSets.main
+
+            mods {
+                Kottle {
+                    source sourceSets.main
+                }
+            }
         }
     }
 }
