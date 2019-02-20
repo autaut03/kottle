@@ -5,7 +5,9 @@ buildscript {
         maven { url 'https://files.minecraftforge.net/maven' }
     }
     dependencies {
-        classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '3.+', changing: true
+        classpath(group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '3.+', changing: true) {
+            exclude group: 'trove', module: 'trove'
+        }
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
     }
 }
@@ -83,14 +85,14 @@ jar {
         attributes([
                 'FMLModType': 'LANGPROVIDER'
         ])
-        
+
         attributes([
-                'Specification-Title': 'Mod Language Provider',
-                'Specification-Vendor': 'Forge Development LLC',
-                'Specification-Version': '1',
-                'Implementation-Title': archivesBaseName,
-                'Implementation-Version': version,
-                'Implementation-Vendor': 'kottle',
+                'Specification-Title'     : 'Mod Language Provider',
+                'Specification-Vendor'    : 'Forge Development LLC',
+                'Specification-Version'   : '1',
+                'Implementation-Title'    : archivesBaseName,
+                'Implementation-Version'  : version,
+                'Implementation-Vendor'   : 'kottle',
                 'Implementation-Timestamp': new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
         ], 'net/alexwells/kottle/')
     }
