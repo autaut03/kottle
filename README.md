@@ -16,11 +16,16 @@ buildscript {
     }
 
     dependencies {
-        classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '3.+', changing: true
+        // Remove this line: classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '3.+', changing: true
+        // trove is forked and used by kotlin and we have to use it instead of the one forked by Forge
+        // to avoid compilation errors on Linux (see PR #2)
+        classpath(group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '3.+', changing: true) {
+            exclude group: 'trove', module: 'trove'
+        }
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
     }
 }
-apply plugin: 'net.minecraftforge.gradle'
+
 apply plugin: 'kotlin'
 
 repositories {
@@ -33,40 +38,16 @@ dependencies {
 ```
 , in your `gradle.properties`:
 ```
-# This is your kotlin gradle plugin version. For now, use 1.3.11.
-kotlinVersion = 1.3.11
+# This is your kotlin gradle plugin version. For now, use 1.3.21.
+kotlinVersion = 1.3.21
 
-# For now, use 1.0.4.
-kottleVersion = 1.0.4
+# For now, use 1.0.5.
+kottleVersion = 1.0.5
 ```
 , in your `mods.toml`:
 ```toml
 modLoader="kotlinfml"
 loaderVersion="[1,)"
-```
-
-if you prefer using version 1.3.21, in your `build.gradle`:
-```groovy
-buildscript {
-    repositories {
-        jcenter()
-    }
-
-    dependencies {
-        classpath(group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '3.+', changing: true) {
-            exclude group: 'trove', module: 'trove'
-        }
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
-    }
-}
-```
-, in your `gradle.properties`
-```
-# This is your kotlin gradle plugin version. For now, use 1.3.21.
-kotlinVersion = 1.3.21
-
-# For now, use 1.0.4.
-kottleVersion = 1.0.4
 ```
 
 Then download Kottle from [here](https://minecraft.curseforge.com/projects/kottle/files) and drop it into your `run/mods`
