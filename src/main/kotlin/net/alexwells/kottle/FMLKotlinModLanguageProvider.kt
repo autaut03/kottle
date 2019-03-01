@@ -25,7 +25,7 @@ class FMLKotlinModLanguageProvider : IModLanguageProvider {
 
 	override fun getFileVisitor(): Consumer<ModFileScanData> {
 		return Consumer { scanResult ->
-			val modTargetMap = scanResult.annotations.stream()
+			val modTargetMap = scanResult.annotations.toList().stream()
 					.filter { ad -> ad.annotationType == FMLJavaModLanguageProvider.MODANNOTATION }
 					.peek { ad -> logger.debug(SCAN, "Found @Mod class {} with id {}", ad.classType.className, ad.annotationData["value"]) }
 					.map { ad -> FMLKotlinModTarget(ad.classType.className, ad.annotationData["value"] as String) }
