@@ -41,8 +41,8 @@ dependencies {
 # This is your kotlin gradle plugin version. For now, use 1.3.21.
 kotlinVersion = 1.3.21
 
-# For now, use 1.0.5.
-kottleVersion = 1.0.5
+# For now, use 1.0.6.
+kottleVersion = 1.0.6
 ```
 , in your `mods.toml`:
 ```toml
