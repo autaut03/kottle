@@ -32,8 +32,27 @@ repositories {
     maven { url 'https://minecraft.curseforge.com/api/maven/' }
 }
 
+configurations {
+    mod
+}
+
 dependencies {
     compile "kottle:Kottle:$kottleVersion"
+    mod "kottle:Kottle:$kottleVersion"
+}
+
+task installMods(type: Copy, dependsOn: "deinstallMods") {
+    from { configurations.mod }
+    include "**/*.jar"
+    into file("run/mods")
+}
+
+task deinstallMods(type: Delete) {
+    delete fileTree(dir: "run/mods", include: "*.jar")
+}
+
+project.afterEvaluate {
+    project.tasks['prepareRuns'].dependsOn(project.tasks['installMods'])
 }
 ```
 , in your `gradle.properties`:
@@ -49,9 +68,6 @@ kottleVersion = 1.0.6
 modLoader="kotlinfml"
 loaderVersion="[1,)"
 ```
-
-Then download Kottle from [here](https://minecraft.curseforge.com/projects/kottle/files) and drop it into your `run/mods`
-folder of MDK. Create the folder if it doesn't exist.
 
 Finally, replace `FMLJavaModLoadingContext` references in your code with `FMLKotlinModLoadingContext` and
 `Mod.EventBusSubcriber` with `KotlinEventBusSubcriber`. For more info, checkout test sources 
