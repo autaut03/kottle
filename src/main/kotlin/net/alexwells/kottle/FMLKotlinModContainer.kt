@@ -48,6 +48,7 @@ class FMLKotlinModContainer(
         triggerMap[ModLoadingStage.ENQUEUE_IMC] = dummy().andThen(::beforeEvent).andThen(::fireEvent).andThen(::afterEvent)
         triggerMap[ModLoadingStage.PROCESS_IMC] = dummy().andThen(::beforeEvent).andThen(::fireEvent).andThen(::afterEvent)
         triggerMap[ModLoadingStage.COMPLETE] = dummy().andThen(::beforeEvent).andThen(::fireEvent).andThen(::afterEvent)
+        triggerMap[ModLoadingStage.GATHERDATA] = dummy().andThen(::beforeEvent).andThen(::fireEvent).andThen(::afterEvent)
         eventBus = BusBuilder.builder().setExceptionHandler(::onEventFailed).setTrackPhases(false).build()
         configHandler = Optional.of(Consumer { event -> eventBus.post(event) })
 

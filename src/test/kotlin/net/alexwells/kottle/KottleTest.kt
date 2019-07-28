@@ -1,5 +1,7 @@
 package net.alexwells.kottle
 
+import net.minecraft.item.Item
+import net.minecraftforge.event.RegistryEvent
 import net.minecraftforge.eventbus.api.SubscribeEvent
 import net.minecraftforge.fml.common.Mod
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent
@@ -17,6 +19,10 @@ object KottleTest {
 		FMLKotlinModLoadingContext.get().modEventBus.addListener { event: FMLCommonSetupEvent -> setup2(event) }
 		// or just register whole object and mark needed method with SubscribeEvent annotations.
 		FMLKotlinModLoadingContext.get().modEventBus.register(this)
+
+		FMLKotlinModLoadingContext.get().modEventBus.register(ObjectStub)
+
+		FMLKotlinModLoadingContext.get().modEventBus.addListener { event: RegistryEvent.Register<Item> -> AnotherObjectStub.registerItems(event)}
 	}
 
 	// You can also use EventBusSubscriber as usual
