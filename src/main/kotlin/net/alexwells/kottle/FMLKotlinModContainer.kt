@@ -72,7 +72,7 @@ class FMLKotlinModContainer(
             // Now we can load the class, so that static {} block gets called
             Class.forName(className) // todo: use modClassLoader? IMPORTANT
             // Then we check whether it's a kotlin object and return it, or if not we create a new instance of kotlin class.
-            this.mod = modClass.kotlin.objectInstance ?: modClass.getConstructor().newInstance()
+            this.mod = modClass::class
             logger.debug(LOADING, "Loaded mod instance {} of type {}", getModId(), modClass.name)
         } catch (e: Throwable) {
             logger.error(LOADING, "Failed to create mod instance. ModID: {}, class {}", getModId(), modClass.name, e)
