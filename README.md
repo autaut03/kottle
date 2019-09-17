@@ -60,8 +60,8 @@ project.afterEvaluate {
 # This is your kotlin gradle plugin version. For now, use 1.3.21.
 kotlinVersion = 1.3.21
 
-# For now, use 1.0.6.
-kottleVersion = 1.0.6
+# Change this to the most recent release version from CurseForge
+kottleVersion = 1.1.1
 ```
 , in your `mods.toml`:
 ```toml
