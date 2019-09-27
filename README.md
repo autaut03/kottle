@@ -70,6 +70,6 @@ loaderVersion="[1,)"
 ```
 
 Finally, replace `FMLJavaModLoadingContext` references in your code with `FMLKotlinModLoadingContext` and
-`Mod.EventBusSubcriber` with `KotlinEventBusSubcriber`. For more info, checkout test sources 
+`Mod.EventBusSubscriber` with `KotlinEventBusSubscriber`. For more info, checkout test sources 
 [here](https://github.com/autaut03/kottle/tree/master/src/test/kotlin/net/alexwells/kottle) or my mod,
 Roomery, [here](https://github.com/autaut03/roomery).
