@@ -113,4 +113,9 @@ class FMLKotlinModContainer(
 
     override fun matches(mod: Any): Boolean = mod === this.mod
     override fun getMod(): Any? = mod
+
+    override fun acceptEvent(e: Event)
+    {
+        eventBus.post(e)
+    }
 }
