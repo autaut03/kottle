@@ -62,7 +62,7 @@ project.afterEvaluate {
 kotlinVersion = 1.3.50
 
 # Change this to the most recent release version from CurseForge
-kottleVersion = 1.2.1
+kottleVersion = 1.2.0
 ```
 , in your `mods.toml`:
 ```toml
