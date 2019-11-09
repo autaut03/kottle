@@ -77,4 +77,5 @@ Roomery, [here](https://github.com/autaut03/roomery).
 
 ## FAQ
 - `addListener(SetupLifecycle::registerItems)` crashes the game:
+
   TL;DR: nothing that can be done about it. Use other methods. See https://github.com/autaut03/kottle/issues/8
