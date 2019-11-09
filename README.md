@@ -74,3 +74,7 @@ Finally, replace `FMLJavaModLoadingContext` references in your code with `FMLKot
 `Mod.EventBusSubscriber` with `KotlinEventBusSubscriber`. For more info, checkout test sources 
 [here](https://github.com/autaut03/kottle/tree/master/src/test/kotlin/net/alexwells/kottle) or my mod,
 Roomery, [here](https://github.com/autaut03/roomery).
+
+## FAQ
+- `addListener(SetupLifecycle::registerItems)` crashes the game:
+  TL;DR: nothing that can be done about it. Use other methods. See https://github.com/autaut03/kottle/issues/8
