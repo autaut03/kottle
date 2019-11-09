@@ -7,7 +7,7 @@ Kotlin language provider for Forge 1.13.2+. Originally a rewrite of [Shadowfacts
 - Currently provides Kotlin libraries with version `1.3.50`, Kotlin coroutines version `1.3.2` and JetBrains annotations version `18.0.0`.
 
 ## Usage
-First of all, make sure you're on Forge 25.0.15 or higher.
+First of all, make sure you're on Forge 28.1.0 or higher.
 
 Then, in your `build.gradle`:
 ```groovy

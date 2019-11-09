@@ -1,0 +1,93 @@
+apply plugin: 'net.minecraftforge.gradle'
+apply plugin: 'kotlin'
+apply plugin: 'eclipse'
+
+group = 'net.alexwells.kottle.integrationtest'
+archivesBaseName = 'KottleIntegrationTest'
+
+sourceCompatibility = targetCompatibility = compileJava.sourceCompatibility = compileJava.targetCompatibility = "1.8"
+compileKotlin.kotlinOptions.jvmTarget = compileTestKotlin.kotlinOptions.jvmTarget = '1.8'
+
+repositories {
+}
+
+configurations {
+    kottleConfig
+}
+
+minecraft {
+    mappings channel: mappingsChannel, version: mappingsVersion
+
+    runs {
+        client {
+            workingDirectory project.file('run')
+
+            properties 'forge.logging.markers': 'CORE,SCAN,REGISTRIES'
+            properties 'forge.logging.console.level': 'info'
+            properties 'forge.logging.noansi': 'false'
+
+            mods {
+                KottleIntegrationTest {
+                    source sourceSets.main
+                }
+            }
+        }
+
+        server {
+            workingDirectory project.file('run')
+
+            properties 'forge.logging.markers': 'CORE,SCAN,REGISTRIES'
+            properties 'forge.logging.console.level': 'info'
+            properties 'forge.logging.noansi': 'false'
+
+            arg 'nogui'
+
+            mods {
+                KottleIntegrationTest {
+                    source sourceSets.main
+                }
+            }
+        }
+    }
+}
+
+dependencies {
+    minecraft "net.minecraftforge:forge:1.14.4-28.1.10"
+    implementation rootProject
+    kottleConfig rootProject
+}
+
+jar {
+    manifest {
+        attributes([
+                "Specification-Title"     : "Kottle Integration Test",
+                "Specification-Vendor"    : "kottle",
+                "Specification-Version"   : "1",
+                "Implementation-Title"    : project.name,
+                "Implementation-Version"  : "${version}",
+                "Implementation-Vendor"   : "kottle",
+                "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
+        ])
+    }
+}
+
+task installKottle(type: Copy, dependsOn: "deinstallMods") {
+    from { configurations.kottleConfig }
+    include("**/Kottle-${rootProject.version}.jar")
+    into(project.file("run/mods"))
+}
+
+task deinstallMods(type: Delete) {
+    delete(project.fileTree(dir: "run/mods", include: "*.jar"))
+}
+
+task eulaTxt()  {
+    doLast {
+        project.file("run/eula.txt").text = "eula=true"
+    }
+}
+
+project.afterEvaluate {
+    project.tasks["prepareRuns"].dependsOn(project.tasks["installKottle"])
+    project.tasks["prepareRuns"].dependsOn(project.tasks["eulaTxt"])
+}
