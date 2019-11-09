@@ -13,6 +13,7 @@ import net.minecraftforge.fml.ModLoadingStage
 import net.minecraftforge.forgespi.language.IModInfo
 import net.minecraftforge.forgespi.language.ModFileScanData
 import org.apache.logging.log4j.LogManager
+import java.lang.IllegalStateException
 import java.util.*
 import java.util.function.Consumer
 import java.util.function.Supplier
@@ -75,7 +76,16 @@ class FMLKotlinModContainer(
             this.mod = modClass.kotlin.objectInstance ?: modClass.getConstructor().newInstance()
             logger.debug(LOADING, "Loaded mod instance {} of type {}", getModId(), modClass.name)
         } catch (e: Throwable) {
+            if (e is IllegalStateException) {
+                logger.error(
+                        LOADING,
+                        "This seems like a compatibility error between Kottle and the mod. " +
+                                "Please make sure identical versions of shadowed libraries are used in the mod and Kottle of this version."
+                )
+            }
+
             logger.error(LOADING, "Failed to create mod instance. ModID: {}, class {}", getModId(), modClass.name, e)
+
             throw ModLoadingException(modInfo, event.fromStage(), "fml.modloading.failedtoloadmod", e, modClass)
         }
 
