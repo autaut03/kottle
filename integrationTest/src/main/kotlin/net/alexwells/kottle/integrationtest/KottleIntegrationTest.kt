@@ -29,7 +29,7 @@ import kotlin.streams.asSequence
 
 @Mod("kottle_integration_test")
 @KotlinEventBusSubscriber(bus = KotlinEventBusSubscriber.Bus.MOD)
-object KottleTest {
+object KottleIntegrationTest {
     private val logger: Logger = LogManager.getLogger()
 
     @OnlyIn(Dist.DEDICATED_SERVER)

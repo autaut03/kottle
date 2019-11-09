@@ -90,4 +90,5 @@ task eulaTxt()  {
 project.afterEvaluate {
     project.tasks["prepareRuns"].dependsOn(project.tasks["installKottle"])
     project.tasks["prepareRuns"].dependsOn(project.tasks["eulaTxt"])
+    project.tasks["prepareRuns"].dependsOn(rootProject.tasks["build"])
 }
