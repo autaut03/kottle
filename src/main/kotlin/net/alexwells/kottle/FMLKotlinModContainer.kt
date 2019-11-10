@@ -39,15 +39,15 @@ class FMLKotlinModContainer(
 
     init {
         logger.debug(LOADING, "Creating FMLModContainer instance for $className with classLoader $modClassLoader & ${javaClass.classLoader}")
-        triggerMap[ModLoadingStage.CONSTRUCT] = dummy.andThen(::constructMod).andThen(::afterEvent)
-        triggerMap[ModLoadingStage.CREATE_REGISTRIES] = dummy.andThen(::fireEvent).andThen(::afterEvent)
-        triggerMap[ModLoadingStage.LOAD_REGISTRIES] = dummy.andThen(::fireEvent).andThen(::afterEvent)
-        triggerMap[ModLoadingStage.COMMON_SETUP] = dummy.andThen(::fireEvent).andThen(::afterEvent)
-        triggerMap[ModLoadingStage.SIDED_SETUP] = dummy.andThen(::fireEvent).andThen(::afterEvent)
-        triggerMap[ModLoadingStage.ENQUEUE_IMC] = dummy.andThen(::fireEvent).andThen(::afterEvent)
-        triggerMap[ModLoadingStage.PROCESS_IMC] = dummy.andThen(::fireEvent).andThen(::afterEvent)
-        triggerMap[ModLoadingStage.COMPLETE] = dummy.andThen(::fireEvent).andThen(::afterEvent)
-        triggerMap[ModLoadingStage.GATHERDATA] = dummy.andThen(::fireEvent).andThen(::afterEvent)
+        triggerMap[ModLoadingStage.CONSTRUCT] = dummy().andThen(::constructMod).andThen(::afterEvent)
+        triggerMap[ModLoadingStage.CREATE_REGISTRIES] = dummy().andThen(::fireEvent).andThen(::afterEvent)
+        triggerMap[ModLoadingStage.LOAD_REGISTRIES] = dummy().andThen(::fireEvent).andThen(::afterEvent)
+        triggerMap[ModLoadingStage.COMMON_SETUP] = dummy().andThen(::fireEvent).andThen(::afterEvent)
+        triggerMap[ModLoadingStage.SIDED_SETUP] = dummy().andThen(::fireEvent).andThen(::afterEvent)
+        triggerMap[ModLoadingStage.ENQUEUE_IMC] = dummy().andThen(::fireEvent).andThen(::afterEvent)
+        triggerMap[ModLoadingStage.PROCESS_IMC] = dummy().andThen(::fireEvent).andThen(::afterEvent)
+        triggerMap[ModLoadingStage.COMPLETE] = dummy().andThen(::fireEvent).andThen(::afterEvent)
+        triggerMap[ModLoadingStage.GATHERDATA] = dummy().andThen(::fireEvent).andThen(::afterEvent)
         configHandler = Optional.of(Consumer { event -> eventBus.post(event) })
         val contextExtension = FMLKotlinModLoadingContext.Context(this)
         this.contextExtension = Supplier { contextExtension }
@@ -85,7 +85,7 @@ class FMLKotlinModContainer(
         logger.debug(LOADING, "Completed Automatic event subscribers for ${getModId()}")
     }
 
-    private val dummy get() = Consumer<LifecycleEventProvider.LifecycleEvent> {}
+    private fun dummy() = Consumer<LifecycleEventProvider.LifecycleEvent> {}
 
     private fun fireEvent(lifecycleEvent: LifecycleEventProvider.LifecycleEvent) {
         val event = lifecycleEvent.getOrBuildEvent(this)

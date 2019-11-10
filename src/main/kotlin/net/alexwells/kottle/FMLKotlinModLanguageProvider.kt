@@ -23,7 +23,7 @@ class FMLKotlinModLanguageProvider : IModLanguageProvider {
     override fun name() = "kotlinfml"
 
     override fun getFileVisitor() = Consumer<ModFileScanData> { scanResult ->
-        val modTargetMap = scanResult.annotations.asSequence()
+        val modTargetMap = scanResult.annotations
                 .filter { it.annotationType == FMLJavaModLanguageProvider.MODANNOTATION }
                 .map { ad ->
                     val className = ad.classType.className
