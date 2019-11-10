@@ -1,9 +1,9 @@
 package net.alexwells.kottle
 
+import net.alexwells.kottle.KotlinEventBusSubscriber.Bus
 import net.minecraftforge.api.distmarker.Dist
 import net.minecraftforge.common.MinecraftForge
 import net.minecraftforge.eventbus.api.IEventBus
-import java.util.function.Supplier
 
 /**
  * Annotate a class which will be subscribed to an Event Bus at mod construction time.
@@ -37,21 +37,17 @@ annotation class KotlinEventBusSubscriber(
          */
         val bus: Bus = Bus.FORGE
 ) {
-    enum class Bus private constructor(private val busSupplier: Supplier<IEventBus>) {
+    enum class Bus private constructor(val busSupplier: () -> IEventBus) {
         /**
          * The main Forge Event Bus.
          * @see MinecraftForge.EVENT_BUS
          */
-        FORGE(Supplier { MinecraftForge.EVENT_BUS }),
+        FORGE({ MinecraftForge.EVENT_BUS }),
 
         /**
          * The mod specific Event bus.
          * @see FMLKotlinModLoadingContext.get().modEventBus
          */
-        MOD(Supplier { FMLKotlinModLoadingContext.get().modEventBus });
-
-        fun bus(): Supplier<IEventBus> {
-            return busSupplier
-        }
+        MOD({ FMLKotlinModLoadingContext.get().modEventBus });
     }
 }
