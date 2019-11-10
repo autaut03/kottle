@@ -6,7 +6,6 @@ import net.minecraftforge.forgespi.language.IModLanguageProvider
 import net.minecraftforge.forgespi.language.ModFileScanData
 import org.apache.logging.log4j.LogManager
 import kotlin.reflect.full.primaryConstructor
-import kotlin.reflect.jvm.javaMethod
 
 /**
  * Similar to FMLModTarget, just with ModContainer class changed.
@@ -23,8 +22,7 @@ class FMLKotlinModTarget(private val className: String) : IModLanguageProvider.I
         logger.debug(LOADING, "Loading FMLKotlinModContainer from classloader ${Thread.currentThread().contextClassLoader}")
         Class.forName("net.alexwells.kottle.FMLKotlinModContainer", true, Thread.currentThread().contextClassLoader)
                 .also { logger.debug(LOADING, "Loading FMLKotlinModContainer got ${it.classLoader}") }
-                .kotlin.primaryConstructor?.javaMethod
-                ?.invoke(info, className, modClassLoader, modFileScanResults) as T
+                .kotlin.primaryConstructor?.call(info, className, modClassLoader, modFileScanResults) as T
     } catch (e: ReflectiveOperationException) {
         logger.fatal(LOADING, "Unable to load FMLKotlinModContainer, wut?", e)
         throw e
