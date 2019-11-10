@@ -1,11 +1,11 @@
 package net.alexwells.kottle
 
+import kotlin.reflect.full.primaryConstructor
 import net.minecraftforge.fml.Logging.LOADING
 import net.minecraftforge.forgespi.language.IModInfo
 import net.minecraftforge.forgespi.language.IModLanguageProvider
 import net.minecraftforge.forgespi.language.ModFileScanData
 import org.apache.logging.log4j.LogManager
-import kotlin.reflect.full.primaryConstructor
 
 /**
  * Similar to FMLModTarget, just with ModContainer class changed.

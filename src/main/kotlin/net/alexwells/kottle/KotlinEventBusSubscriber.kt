@@ -15,27 +15,27 @@ import net.minecraftforge.eventbus.api.IEventBus
 @Retention(AnnotationRetention.RUNTIME)
 @Target(AnnotationTarget.CLASS, AnnotationTarget.FILE)
 annotation class KotlinEventBusSubscriber(
-        /**
-         * Specify targets to load this event subscriber on. Can be used to avoid loading Client specific events
-         * on a dedicated server, for example.
-         *
-         * @return an array of Dist to load this event subscriber on
-         */
-        vararg val value: Dist = [Dist.CLIENT, Dist.DEDICATED_SERVER],
+    /**
+     * Specify targets to load this event subscriber on. Can be used to avoid loading Client specific events
+     * on a dedicated server, for example.
+     *
+     * @return an array of Dist to load this event subscriber on
+     */
+    vararg val value: Dist = [Dist.CLIENT, Dist.DEDICATED_SERVER],
 
-        /**
-         * Optional value, only necessary if this annotation is not on the same class that has a @Mod annotation.
-         * Needed to prevent early classloading of classes not owned by your mod.
-         * @return a modid
-         */
-        val modid: String = "",
+    /**
+     * Optional value, only necessary if this annotation is not on the same class that has a @Mod annotation.
+     * Needed to prevent early classloading of classes not owned by your mod.
+     * @return a modid
+     */
+    val modid: String = "",
 
-        /**
-         * Specify an alternative bus to listen to
-         *
-         * @return the bus you wish to listen to
-         */
-        val bus: Bus = Bus.FORGE
+    /**
+     * Specify an alternative bus to listen to
+     *
+     * @return the bus you wish to listen to
+     */
+    val bus: Bus = Bus.FORGE
 ) {
     enum class Bus private constructor(val busSupplier: () -> IEventBus) {
         /**

@@ -1,5 +1,7 @@
 package net.alexwells.kottle
 
+import java.util.function.Consumer
+import java.util.function.Supplier
 import net.minecraftforge.fml.Logging.LOADING
 import net.minecraftforge.fml.Logging.SCAN
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLanguageProvider
@@ -7,8 +9,6 @@ import net.minecraftforge.forgespi.language.ILifecycleEvent
 import net.minecraftforge.forgespi.language.IModLanguageProvider
 import net.minecraftforge.forgespi.language.ModFileScanData
 import org.apache.logging.log4j.LogManager
-import java.util.function.Consumer
-import java.util.function.Supplier
 
 /**
  * Similar to FMLJavaModLanguageProvider

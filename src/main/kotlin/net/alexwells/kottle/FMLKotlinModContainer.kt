@@ -1,5 +1,8 @@
 package net.alexwells.kottle
 
+import java.util.*
+import java.util.function.Consumer
+import java.util.function.Supplier
 import net.minecraftforge.eventbus.EventBusErrorMessage
 import net.minecraftforge.eventbus.api.BusBuilder
 import net.minecraftforge.eventbus.api.Event
@@ -13,9 +16,6 @@ import net.minecraftforge.fml.ModLoadingStage
 import net.minecraftforge.forgespi.language.IModInfo
 import net.minecraftforge.forgespi.language.ModFileScanData
 import org.apache.logging.log4j.LogManager
-import java.util.*
-import java.util.function.Consumer
-import java.util.function.Supplier
 
 /**
  * Similar to FMLModContainer, with few changes:
@@ -27,10 +27,10 @@ import java.util.function.Supplier
  * - instead of using default AutomaticEventSubscriber, we're using KotlinAutomaticEventSubscriber
  */
 class FMLKotlinModContainer(
-        info: IModInfo,
-        private val className: String,
-        private val modClassLoader: ClassLoader,
-        private val scanResults: ModFileScanData
+    info: IModInfo,
+    private val className: String,
+    private val modClassLoader: ClassLoader,
+    private val scanResults: ModFileScanData
 ) : ModContainer(info) {
     private val logger = LogManager.getLogger()
 
