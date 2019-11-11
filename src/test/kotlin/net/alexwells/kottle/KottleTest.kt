@@ -26,7 +26,7 @@ object KottleTest {
     }
 
     // You can also use EventBusSubscriber as usual
-    @KotlinEventBusSubscriber(bus = KotlinEventBusSubscriber.Bus.MOD)
+    @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
     object EventSubscriber {
         @SubscribeEvent
         fun setupNonStatic(event: FMLCommonSetupEvent) {
