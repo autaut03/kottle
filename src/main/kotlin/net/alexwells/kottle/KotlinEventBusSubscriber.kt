@@ -14,6 +14,7 @@ import net.minecraftforge.eventbus.api.IEventBus
  */
 @Retention(AnnotationRetention.RUNTIME)
 @Target(AnnotationTarget.CLASS, AnnotationTarget.FILE)
+@Deprecated("Use @Mod.EventBusSubscriber instead. This will be removed in a future release.", ReplaceWith("@Mod.EventBusSubscriber", "net.minecraftforge.fml.common.Mod"))
 annotation class KotlinEventBusSubscriber(
     /**
      * Specify targets to load this event subscriber on. Can be used to avoid loading Client specific events
