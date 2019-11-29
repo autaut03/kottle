@@ -4,7 +4,7 @@ Kotlin language provider for Forge 1.13.2+. Originally a rewrite of [Shadowfacts
 - Shades the Kotlin standard library, runtime, and reflect libraries so you don't have to.
 - Provides a Forge `IModLanguageProvider` for using Kotlin `object` classes as your main mod class and adds support for
 `object` instances for `@Mod.EventBusSubscriber`
-- Currently provides Kotlin libraries with version `1.3.50`, Kotlin coroutines version `1.3.2` and JetBrains annotations version `18.0.0`.
+- Currently provides Kotlin libraries with version `1.3.61`, Kotlin coroutines version `1.3.2` and JetBrains annotations version `18.0.0`.
 
 ## Usage
 First of all, make sure you're on Forge 25.0.15 or higher.
@@ -58,11 +58,11 @@ project.afterEvaluate {
 ```
 , in your `gradle.properties`:
 ```
-# This is your kotlin gradle plugin version. For now, use 1.3.50.
-kotlinVersion = 1.3.50
+# This is your kotlin gradle plugin version. For now, use 1.3.61.
+kotlinVersion = 1.3.61
 
 # Change this to the most recent release version from CurseForge
-kottleVersion = 1.2.0
+kottleVersion = 1.3.0
 ```
 , in your `mods.toml`:
 ```toml
