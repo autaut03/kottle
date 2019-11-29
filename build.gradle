@@ -117,6 +117,7 @@ shadowJar {
     classifier = ""
 
     dependencies {
+        include(dependency("org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"))
         include(dependency("org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlinVersion"))
         include(dependency("org.jetbrains.kotlin:kotlin-reflect:$kotlinVersion"))
         include(dependency("org.jetbrains:annotations:$annotationsVersion"))
