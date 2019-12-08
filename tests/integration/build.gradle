@@ -73,7 +73,7 @@ jar {
 
 task installKottle(type: Copy, dependsOn: "deinstallMods") {
     from { configurations.kottleConfig }
-    include("**/Kottle-${rootProject.version}.jar")
+    include("../../build/libs/Kottle-${rootProject.version}.jar")
     into(project.file("run/mods"))
 }
 

@@ -1,2 +1,3 @@
 rootProject.name = 'kottle'
-include 'integrationTest'
+
+include 'tests:integration'

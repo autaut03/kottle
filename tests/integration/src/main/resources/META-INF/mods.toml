@@ -1,5 +1,5 @@
 modLoader="kotlinfml"
-loaderVersion="[1.2.0,)"
+loaderVersion="[1.4.0,)"
 
 [[mods]]
     modId="kottle_integration_test"
