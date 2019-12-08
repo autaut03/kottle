@@ -1,0 +1,12 @@
+modLoader="javafml"
+loaderVersion="[28,)"
+
+[[mods]]
+    modId="kottle"
+
+[[dependencies.kottle]]
+    modId="forge"
+    mandatory=true
+    versionRange="[28,)"
+    ordering="NONE"
+    side="BOTH"

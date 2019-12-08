@@ -10,40 +10,40 @@ import org.apache.logging.log4j.Logger
 
 @Mod("kottle_test")
 object KottleTest {
-	val logger: Logger = LogManager.getLogger()
+    val logger: Logger = LogManager.getLogger()
 
-	init {
-		// You either need to specify generic type explicitly and use a consumer
-		FMLKotlinModLoadingContext.get().modEventBus.addListener<FMLCommonSetupEvent> { setup(it) }
-		// use a consumer with parameter types specified
-		FMLKotlinModLoadingContext.get().modEventBus.addListener { event: FMLCommonSetupEvent -> setup2(event) }
-		// or just register whole object and mark needed method with SubscribeEvent annotations.
-		FMLKotlinModLoadingContext.get().modEventBus.register(this)
+    init {
+        // You either need to specify generic type explicitly and use a consumer
+        FMLKotlinModLoadingContext.get().modEventBus.addListener<FMLCommonSetupEvent> { setup(it) }
+        // use a consumer with parameter types specified
+        FMLKotlinModLoadingContext.get().modEventBus.addListener { event: FMLCommonSetupEvent -> setup2(event) }
+        // or just register whole object and mark needed method with SubscribeEvent annotations.
+        FMLKotlinModLoadingContext.get().modEventBus.register(this)
 
-		FMLKotlinModLoadingContext.get().modEventBus.register(ObjectStub)
+        FMLKotlinModLoadingContext.get().modEventBus.register(ObjectStub)
 
-		FMLKotlinModLoadingContext.get().modEventBus.addListener { event: RegistryEvent.Register<Item> -> AnotherObjectStub.registerItems(event)}
-	}
+        FMLKotlinModLoadingContext.get().modEventBus.addListener { event: RegistryEvent.Register<Item> -> AnotherObjectStub.registerItems(event) }
+    }
 
-	// You can also use EventBusSubscriber as usual
-	@KotlinEventBusSubscriber(bus = KotlinEventBusSubscriber.Bus.MOD)
-	object EventSubscriber {
-		@SubscribeEvent
-		fun setupNonStatic(event: FMLCommonSetupEvent) {
-			logger.info("HELLO from setupNonStatic")
-		}
-	}
+    // You can also use EventBusSubscriber as usual
+    @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
+    object EventSubscriber {
+        @SubscribeEvent
+        fun setupNonStatic(event: FMLCommonSetupEvent) {
+            logger.info("HELLO from setupNonStatic")
+        }
+    }
 
-	fun setup(event: FMLCommonSetupEvent) {
-		logger.info("HELLO from setup")
-	}
+    fun setup(event: FMLCommonSetupEvent) {
+        logger.info("HELLO from setup")
+    }
 
-	fun setup2(event: FMLCommonSetupEvent) {
-		logger.info("HELLO from setup2")
-	}
+    fun setup2(event: FMLCommonSetupEvent) {
+        logger.info("HELLO from setup2")
+    }
 
-	@SubscribeEvent
-	fun setup3(event: FMLCommonSetupEvent) {
-		logger.info("HELLO from setup3")
-	}
+    @SubscribeEvent
+    fun setup3(event: FMLCommonSetupEvent) {
+        logger.info("HELLO from setup3")
+    }
 }
