@@ -1,4 +1,8 @@
 # Kottle
+[![Build Status](https://img.shields.io/travis/com/autaut03/kottle.svg?style=flat)](https://travis-ci.com/autaut03/kottle)
+[![Downloads](http://cf.way2muchnoise.eu/kottle.svg)](https://www.curseforge.com/minecraft/mc-mods/kottle)
+[![Versions](http://cf.way2muchnoise.eu/versions/jei.svg)](https://www.curseforge.com/minecraft/mc-mods/kottle/files)
+
 Kotlin language provider for Forge 1.13.2+. Originally a rewrite of [Shadowfacts's Forgelin](https://github.com/shadowfacts/Forgelin).
 
 - Shades the Kotlin standard library, runtime, and reflect libraries so you don't have to.
