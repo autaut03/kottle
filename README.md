@@ -43,7 +43,7 @@ dependencies {
 kotlinVersion = 1.3.61
 
 # Change this to the most recent release version from CurseForge
-kottleVersion = 1.3.0
+kottleVersion = 1.4.0
 ```
 , in your `mods.toml`:
 ```toml
@@ -51,8 +51,9 @@ modLoader="kotlinfml"
 loaderVersion="[1,)"
 ```
 
-Finally, replace `FMLJavaModLoadingContext` references in your code with `FMLKotlinModLoadingContext` and
-`Mod.EventBusSubscriber` with `KotlinEventBusSubscriber`. For more info, checkout test sources 
+Finally, replace `FMLJavaModLoadingContext` references in your code with `FMLKotlinModLoadingContext`.
+
+For more info, checkout test sources 
 [here](https://github.com/autaut03/kottle/tree/master/src/test/kotlin/net/alexwells/kottle) or my mod,
 Roomery, [here](https://github.com/autaut03/roomery).
 
