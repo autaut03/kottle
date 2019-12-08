@@ -33,27 +33,8 @@ repositories {
     maven { url 'https://minecraft.curseforge.com/api/maven/' }
 }
 
-configurations {
-    mod
-}
-
 dependencies {
-    compile "kottle:Kottle:$kottleVersion"
-    mod "kottle:Kottle:$kottleVersion"
-}
-
-task installMods(type: Copy, dependsOn: "deinstallMods") {
-    from { configurations.mod }
-    include "**/*.jar"
-    into file("run/mods")
-}
-
-task deinstallMods(type: Delete) {
-    delete fileTree(dir: "run/mods", include: "*.jar")
-}
-
-project.afterEvaluate {
-    project.tasks['prepareRuns'].dependsOn(project.tasks['installMods'])
+    implementation "kottle:Kottle:$kottleVersion"
 }
 ```
 , in your `gradle.properties`:
