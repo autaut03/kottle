@@ -81,6 +81,8 @@ minecraft {
 }
 
 jar {
+    classifier = 'slim'
+
     manifest {
         attributes([
                 'FMLModType': 'LANGPROVIDER'
@@ -114,7 +116,7 @@ dependencies {
 }
 
 shadowJar {
-    classifier = ""
+    classifier = ''
 
     dependencies {
         include(dependency("org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"))
@@ -130,4 +132,5 @@ tasks.build.dependsOn shadowJar
 
 artifacts {
     archives shadowJar
+    archives jar
 }
