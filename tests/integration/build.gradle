@@ -52,7 +52,7 @@ minecraft {
 }
 
 dependencies {
-    minecraft "net.minecraftforge:forge:1.14.4-28.1.10"
+    minecraft "net.minecraftforge:forge:1.15.2-31.1.12"
     implementation rootProject
     kottleConfig rootProject
 }
