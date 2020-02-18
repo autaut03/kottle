@@ -3,6 +3,15 @@ loaderVersion="[28,)"
 
 [[mods]]
     modId="kottle"
+    version="${file.jarVersion}"
+    displayName="Kottle"
+    displayURL="https://github.com/autaut03/kottle"
+    issueTrackerURL="https://github.com/autaut03/kottle/issues"
+    credits="All of the contributors: https://github.com/autaut03/kottle/graphs/contributors"
+    authors="Alex_Wells"
+    description='''
+    Kotlin language provider for Forge mods.
+    '''
 
 [[dependencies.kottle]]
     modId="forge"
