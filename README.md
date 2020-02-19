@@ -3,7 +3,7 @@
 [![Downloads](http://cf.way2muchnoise.eu/kottle.svg)](https://www.curseforge.com/minecraft/mc-mods/kottle)
 [![Versions](http://cf.way2muchnoise.eu/versions/kottle.svg)](https://www.curseforge.com/minecraft/mc-mods/kottle/files)
 
-Kotlin language provider for Forge 1.13.2+. Originally a rewrite of [Shadowfacts's Forgelin](https://github.com/shadowfacts/Forgelin).
+Kotlin language provider for Forge 1.13-1.15. Originally a rewrite of [Shadowfacts's Forgelin](https://github.com/shadowfacts/Forgelin).
 
 - Shades the Kotlin standard library, runtime, and reflect libraries so you don't have to.
 - Provides a Forge `IModLanguageProvider` for using Kotlin `object` classes as your main mod class and adds support for
@@ -11,7 +11,7 @@ Kotlin language provider for Forge 1.13.2+. Originally a rewrite of [Shadowfacts
 - Currently provides Kotlin libraries with version `1.3.61`, Kotlin coroutines version `1.3.2` and JetBrains annotations version `18.0.0`.
 
 ## Usage
-First of all, make sure you're on Forge 28.1.0 or higher.
+First of all, make sure you're on Forge 31.0.0 or higher.
 
 Then, in your `build.gradle`:
 ```groovy
@@ -47,7 +47,7 @@ dependencies {
 kotlinVersion = 1.3.61
 
 # Change this to the most recent release version from CurseForge
-kottleVersion = 1.4.0
+kottleVersion = 1.5.0
 ```
 , in your `mods.toml`:
 ```toml
