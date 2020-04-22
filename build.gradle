@@ -104,28 +104,24 @@ repositories {
     jcenter()
 }
 
+configurations {
+    compile.extendsFrom(shade)
+}
+
 dependencies {
     minecraft forgeVersion
 
-    compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
-    compile "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlinVersion"
-    compile "org.jetbrains.kotlin:kotlin-reflect:$kotlinVersion"
-    compile "org.jetbrains:annotations:$annotationsVersion"
-    compile "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion"
-    compile "org.jetbrains.kotlinx:kotlinx-coroutines-jdk8:$coroutinesVersion"
+    shade "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
+    shade "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlinVersion"
+    shade "org.jetbrains.kotlin:kotlin-reflect:$kotlinVersion"
+    shade "org.jetbrains:annotations:$annotationsVersion"
+    shade "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion"
+    shade "org.jetbrains.kotlinx:kotlinx-coroutines-jdk8:$coroutinesVersion"
 }
 
 shadowJar {
     classifier = ''
-
-    dependencies {
-        include(dependency("org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"))
-        include(dependency("org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlinVersion"))
-        include(dependency("org.jetbrains.kotlin:kotlin-reflect:$kotlinVersion"))
-        include(dependency("org.jetbrains:annotations:$annotationsVersion"))
-        include(dependency("org.jetbrains.kotlinx:kotlinx-coroutines-core:${coroutinesVersion}"))
-        include(dependency("org.jetbrains.kotlinx:kotlinx-coroutines-jdk8:${coroutinesVersion}"))
-    }
+    configurations = [project.configurations.shade]
 }
 
 tasks.build.dependsOn shadowJar
