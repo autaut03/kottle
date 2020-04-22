@@ -55,6 +55,9 @@ object KottleIntegrationTest {
             "success!"
         }
 
+        // https://github.com/autaut03/kottle/pull/26
+        logger.info("Random int: ${listOf(1, 2, 3).random()}")
+
         job = GlobalScope.launch {
             logger.info("Future dispatched")
             future.await().also { logger.info("Kotlin Coroutine (with JRE8 Extension) Test: $it") }
