@@ -47,7 +47,7 @@ dependencies {
 kotlinVersion = 1.3.61
 
 # Change this to the most recent release version from CurseForge
-kottleVersion = 1.5.0
+kottleVersion = 1.5.1
 ```
 , in your `mods.toml`:
 ```toml
