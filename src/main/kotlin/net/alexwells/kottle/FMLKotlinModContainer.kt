@@ -56,7 +56,7 @@ class FMLKotlinModContainer(
     private fun constructMod(event: LifecycleEventProvider.LifecycleEvent) {
         // Here we'll load the class
         val modClass = try {
-            Class.forName(className, true, modClassLoader).also {
+            Class.forName(className, false, modClassLoader).also {
                 logger.debug(LOADING, "Loaded modclass ${it.name} with ${it.classLoader}")
             }
         } catch (e: Throwable) {
