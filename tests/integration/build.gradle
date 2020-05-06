@@ -9,6 +9,7 @@ sourceCompatibility = targetCompatibility = compileJava.sourceCompatibility = co
 compileKotlin.kotlinOptions.jvmTarget = compileTestKotlin.kotlinOptions.jvmTarget = '1.8'
 
 repositories {
+    maven { url "https://dl.bintray.com/kotlin/kotlin-eap" }
 }
 
 configurations {

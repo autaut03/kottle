@@ -8,7 +8,7 @@ Kotlin language provider for Forge 1.13-1.15. Originally a rewrite of [Shadowfac
 - Shades the Kotlin standard library, runtime, and reflect libraries so you don't have to.
 - Provides a Forge `IModLanguageProvider` for using Kotlin `object` classes as your main mod class and adds support for
 `object` instances for `@Mod.EventBusSubscriber`
-- Currently provides Kotlin libraries with version `1.3.61`, Kotlin coroutines version `1.3.2` and JetBrains annotations version `18.0.0`.
+- Currently provides Kotlin libraries with version `1.4-M1`, Kotlin coroutines version `1.3.5` and JetBrains annotations version `19.0.0`.
 
 ## Usage
 First of all, make sure you're on Forge 31.0.0 or higher.
@@ -18,6 +18,7 @@ Then, in your `build.gradle`:
 buildscript {
     repositories {
         jcenter()
+        maven { url "https://dl.bintray.com/kotlin/kotlin-eap" }
     }
 
     dependencies {
@@ -34,6 +35,7 @@ buildscript {
 apply plugin: 'kotlin'
 
 repositories {
+    maven { url 'https://dl.bintray.com/kotlin/kotlin-eap' }
     maven { url 'https://minecraft.curseforge.com/api/maven/' }
 }
 
@@ -43,16 +45,16 @@ dependencies {
 ```
 , in your `gradle.properties`:
 ```
-# This is your kotlin gradle plugin version. For now, use 1.3.61.
-kotlinVersion = 1.3.61
+# This is your kotlin gradle plugin version
+kotlinVersion = 1.4-M1
 
 # Change this to the most recent release version from CurseForge
-kottleVersion = 1.5.2
+kottleVersion = 2.0.0
 ```
 , in your `mods.toml`:
 ```toml
 modLoader="kotlinfml"
-loaderVersion="[1,)"
+loaderVersion="[2,)"
 ```
 
 Finally, replace `FMLJavaModLoadingContext` references in your code with `FMLKotlinModLoadingContext`.
