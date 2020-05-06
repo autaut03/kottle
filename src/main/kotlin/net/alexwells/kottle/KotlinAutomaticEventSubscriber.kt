@@ -16,14 +16,13 @@ import org.objectweb.asm.Type
  */
 @Suppress("DEPRECATION")
 object KotlinAutomaticEventSubscriber {
-    private val KOTLIN_SUBSCRIBER = Type.getType(KotlinEventBusSubscriber::class.java)
     private val FORGE_SUBSCRIBER = Type.getType(Mod.EventBusSubscriber::class.java)
 
     private val logger = LogManager.getLogger()
 
     fun inject(mod: ModContainer, scanData: ModFileScanData?, loader: ClassLoader) = if (scanData == null) run { } else scanData.annotations
             .also { logger.debug(Logging.LOADING, "Attempting to inject @EventBusSubscriber classes into the eventbus for ${mod.modId}") }
-            .filter { (it.annotationType == KOTLIN_SUBSCRIBER || it.annotationType == FORGE_SUBSCRIBER) && shouldBeRegistered(mod.modId, it) }
+            .filter { it.annotationType == FORGE_SUBSCRIBER && shouldBeRegistered(mod.modId, it) }
             .forEach { ad ->
                 val busTarget = (ad.annotationData["bus"] as? ModAnnotation.EnumHolder)
                         ?.let { Mod.EventBusSubscriber.Bus.valueOf(it.value) }

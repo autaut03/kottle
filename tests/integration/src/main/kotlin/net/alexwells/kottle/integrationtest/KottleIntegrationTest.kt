@@ -7,7 +7,6 @@ import kotlinx.coroutines.Job
 import kotlinx.coroutines.future.await
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
-import net.alexwells.kottle.KotlinEventBusSubscriber
 import net.minecraft.client.Minecraft
 import net.minecraft.server.dedicated.DedicatedServer
 import net.minecraftforge.api.distmarker.Dist
@@ -28,7 +27,7 @@ import kotlin.streams.asSequence
 
 
 @Mod("kottle_integration_test")
-@KotlinEventBusSubscriber(bus = KotlinEventBusSubscriber.Bus.MOD)
+@Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
 object KottleIntegrationTest {
     private val logger: Logger = LogManager.getLogger()
 
