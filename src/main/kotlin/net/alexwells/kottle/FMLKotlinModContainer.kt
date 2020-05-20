@@ -65,9 +65,9 @@ class FMLKotlinModContainer(
         }
         // Then we check whether it's a kotlin object and return it, or if not we create a new instance of kotlin class.
         try {
-            logger.debug(LOADING, "Loading mod instance ${getModId()} of type $className")
+            logger.debug(LOADING, "Loading mod instance $modId of type $className")
             this.mod = modClass.kotlin.objectInstance ?: modClass.getConstructor().newInstance()
-            logger.debug(LOADING, "Loaded mod instance ${getModId()} of type $className")
+            logger.debug(LOADING, "Loaded mod instance $modId of type $className")
         } catch (e: Throwable) {
             if (e is IllegalStateException) {
                 logger.error(LOADING, "This seems like a compatibility error between Kottle and the mod. " +
@@ -75,33 +75,33 @@ class FMLKotlinModContainer(
                 )
             }
 
-            logger.error(LOADING, "Failed to create mod instance. ModID: ${getModId()}, class $className", e)
+            logger.error(LOADING, "Failed to create mod instance. ModID: $modId, class $className", e)
 
             throw ModLoadingException(modInfo, event.fromStage(), "fml.modloading.failedtoloadmod", e, modClass)
         }
 
-        logger.debug(LOADING, "Injecting Automatic event subscribers for ${getModId()}")
+        logger.debug(LOADING, "Injecting Automatic event subscribers for $modId")
         injectSubscribers(this, scanResults, modClass.classLoader)
-        logger.debug(LOADING, "Completed Automatic event subscribers for ${getModId()}")
+        logger.debug(LOADING, "Completed Automatic event subscribers for $modId")
     }
 
     private fun dummy() = Consumer<LifecycleEventProvider.LifecycleEvent> {}
 
     private fun fireEvent(lifecycleEvent: LifecycleEventProvider.LifecycleEvent) {
         val event = lifecycleEvent.getOrBuildEvent(this)
-        logger.debug(LOADING, "Firing event for modid ${getModId()} : $event")
+        logger.debug(LOADING, "Firing event for modid $modId : $event")
         try {
             eventBus.post(event)
-            logger.debug(LOADING, "Fired event for modid ${getModId()} : $event")
+            logger.debug(LOADING, "Fired event for modid $modId : $event")
         } catch (e: Throwable) {
-            logger.error(LOADING, "Caught exception during event $event dispatch for modid ${getModId()}", e)
+            logger.error(LOADING, "Caught exception during event $event dispatch for modid $modId", e)
             throw ModLoadingException(modInfo, lifecycleEvent.fromStage(), "fml.modloading.errorduringevent", e)
         }
     }
 
     private fun afterEvent(lifecycleEvent: LifecycleEventProvider.LifecycleEvent) {
         if (currentState == ModLoadingStage.ERROR) {
-            logger.error(LOADING, "An error occurred while dispatching event ${lifecycleEvent.fromStage()} to ${getModId()}")
+            logger.error(LOADING, "An error occurred while dispatching event ${lifecycleEvent.fromStage()} to $modId")
         }
     }
 
