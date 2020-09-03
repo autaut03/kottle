@@ -20,9 +20,9 @@ class FMLKotlinModTarget(private val className: String) : IModLanguageProvider.I
         // as soon as it tries to load any mod. Instead, we'll use the exact same thing as FMLModTarget uses -
         // thread-bound class loader, set somewhere deep in the Forge sources. Do NOT try to change this.
         logger.debug(LOADING, "Loading FMLKotlinModContainer from classloader ${Thread.currentThread().contextClassLoader}")
-        Class.forName("net.alexwells.kottle.FMLKotlinModContainer", true, Thread.currentThread().contextClassLoader)
+        val containerClass = Class.forName("net.alexwells.kottle.FMLKotlinModContainer", true, Thread.currentThread().contextClassLoader)
                 .also { logger.debug(LOADING, "Loading FMLKotlinModContainer got ${it.classLoader}") }
-                .kotlin.primaryConstructor?.call(info, className, modClassLoader, modFileScanResults) as T
+        containerClass.constructors.single().newInstance(info, className, modClassLoader, modFileScanResults) as T
     } catch (e: ReflectiveOperationException) {
         logger.fatal(LOADING, "Unable to load FMLKotlinModContainer, wut?", e)
         throw e
