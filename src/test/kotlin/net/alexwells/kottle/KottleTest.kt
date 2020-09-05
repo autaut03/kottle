@@ -14,15 +14,15 @@ object KottleTest {
 
     init {
         // You either need to specify generic type explicitly and use a consumer
-        modLoadingContext.modEventBus.addListener<FMLCommonSetupEvent> { setup(it) }
+        FMLKotlinModLoadingContext.get().modEventBus.addListener<FMLCommonSetupEvent> { setup(it) }
         // use a consumer with parameter types specified
-        modLoadingContext.modEventBus.addListener<FMLCommonSetupEvent> { setup2(it) }
+        FMLKotlinModLoadingContext.get().modEventBus.addListener { event: FMLCommonSetupEvent -> setup2(event) }
         // or just register whole object and mark needed method with SubscribeEvent annotations.
-        modLoadingContext.modEventBus.register(this)
+        FMLKotlinModLoadingContext.get().modEventBus.register(this)
 
-        modLoadingContext.modEventBus.register(ObjectStub)
+        FMLKotlinModLoadingContext.get().modEventBus.register(ObjectStub)
 
-        modLoadingContext.modEventBus.addListener<RegistryEvent.Register<Item>> { AnotherObjectStub.registerItems(it) }
+        FMLKotlinModLoadingContext.get().modEventBus.addListener { event: RegistryEvent.Register<Item> -> AnotherObjectStub.registerItems(event) }
     }
 
     // You can also use EventBusSubscriber as usual

@@ -49,7 +49,7 @@ class FMLKotlinModContainer(
         triggerMap[ModLoadingStage.COMPLETE] = dummy().andThen(::fireEvent).andThen(::afterEvent)
         triggerMap[ModLoadingStage.GATHERDATA] = dummy().andThen(::fireEvent).andThen(::afterEvent)
         configHandler = Optional.of(Consumer { event -> eventBus.post(event) })
-        val contextExtension = Context(this)
+        val contextExtension = FMLKotlinModLoadingContext.Context(this)
         this.contextExtension = Supplier { contextExtension }
     }
 
@@ -81,7 +81,7 @@ class FMLKotlinModContainer(
         }
 
         logger.debug(LOADING, "Injecting Automatic event subscribers for $modId")
-        injectSubscribers(this, scanResults, modClass.classLoader)
+        KotlinAutomaticEventSubscriber.inject(this, scanResults, modClass.classLoader)
         logger.debug(LOADING, "Completed Automatic event subscribers for $modId")
     }
 

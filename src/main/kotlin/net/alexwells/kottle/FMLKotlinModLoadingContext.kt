@@ -2,8 +2,13 @@ package net.alexwells.kottle
 
 import net.minecraftforge.fml.ModLoadingContext
 
-val modLoadingContext: Context get() = ModLoadingContext.get().extension()
+/**
+ * Similar to FMLModLoadingContext.
+ */
+object FMLKotlinModLoadingContext {
+    fun get(): Context = ModLoadingContext.get().extension()
 
-class Context(private val container: FMLKotlinModContainer) {
-    val modEventBus get() = container.eventBus
+    class Context(private val container: FMLKotlinModContainer) {
+        val modEventBus get() = container.eventBus
+    }
 }
