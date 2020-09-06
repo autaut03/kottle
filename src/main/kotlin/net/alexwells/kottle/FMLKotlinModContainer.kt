@@ -36,10 +36,10 @@ class FMLKotlinModContainer(
 ) : ModContainer(info) {
     private lateinit var mod: Any
     val eventBus: IEventBus = BusBuilder.builder()
-            .setExceptionHandler(::onEventFailed)
-            .setTrackPhases(false)
-            .markerType(IModBusEvent::class.java)
-            .build()
+        .setExceptionHandler(::onEventFailed)
+        .setTrackPhases(false)
+        .markerType(IModBusEvent::class.java)
+        .build()
 
     init {
         logger.debug(LOADING, "Creating FMLKotlinModContainer instance for $className with classLoader $modClassLoader & ${javaClass.classLoader}")
