@@ -11,7 +11,7 @@
 </h1>
 
 
-Kotlin language provider for Forge 1.13-1.15. Originally a rewrite of [Shadowfacts's Forgelin](https://github.com/shadowfacts/Forgelin).
+Kotlin language provider for Forge 1.13-1.16. Originally a rewrite of [Shadowfacts's Forgelin](https://github.com/shadowfacts/Forgelin).
 
 - Shades the Kotlin standard library, runtime, and reflect libraries so you don't have to.
 - Provides a Forge `IModLanguageProvider` for using Kotlin `object` classes as your main mod class and adds support for
